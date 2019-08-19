@@ -18,12 +18,12 @@
 
     <distributionManagement>
       <repository>
-          <id>central</id>
+          <id>ucsd.artifactory</id>
           <name>lib-artifacts-releases</name>
           <url>${env.ARTIFACTORY_URL}/maven-release-local</url>
       </repository>
       <snapshotRepository>
-          <id>snapshots</id>
+          <id>ucsd.artifactory</id>
           <name>lib-artifacts-snapshots</name>
           <url>${env.ARTIFACTORY_URL}/maven-release-local</url>
       </snapshotRepository>
