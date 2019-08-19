@@ -1,0 +1,30 @@
+<!--
+    Partial view for depositors page.
+-->
+
+<table class="table table-bordered">
+    <thead>
+    <th>Depositor</th>
+    <th ng-repeat="server in servers | orderBy: 'node'">
+        {{ server.node }}
+    </th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="depositor in depositors | orderBy: 'name'">
+
+        <td>{{ depositor.name }}</td>
+
+        <td ng-repeat="server in servers | orderBy: 'node'">
+            <span ng-show="depositor[server.node]">
+                Bags: {{ depositor[server.node].bags | number }}<br/>
+                Files: {{ depositor[server.node].files | number }}<br/>
+                Bytes: {{ depositor[server.node].bytes | number }}
+            </span>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+<div ng-show="loading">
+    <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
+</div>

@@ -1,0 +1,99 @@
+/*
+ * chrondash css stylesheet
+ *
+ * This stylesheet must appear in the header before any Angular source to ensure
+ * correct handling of ng-cloak.
+ */
+
+/* formatting for all images
+img {
+    height: 20px;
+    width: 20px;
+}
+ */
+/* table data formatting */
+th, td {
+    text-align: center;
+}
+table tbody tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+/* change bootstrap colors when hovering on a table row */
+.table-hover tbody tr:hover td {
+    background-color: #9494B8;
+    color:#ffffff;
+    /* change to a hand when hovering on a row */
+    cursor: pointer;
+}
+body {
+    /*
+     * Body padding is required when using a navbar fixed to the top of the
+     * screen. Without padding, the fixed navbar will overlay other content.
+     * By default, the navbar is 50px high.
+     */
+    /*padding-top: 70px;*/
+}
+/*
+ * html elements (and their children) that are tagged with the ngCloak directive
+ * are hidden until the template has completed compilation.
+ */
+[ng-cloak] {
+    display: none;
+}
+/* increase the glyphicon size */
+span.glyphicon-globe {
+    font-size: 1.5em;
+}
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+
+.green {
+    color: #00f029;
+}
+
+.red {
+    color: #f10000;
+}
+
+/** The following section is for NSF/NCAR branding only.
+ */
+.pageHeaderImage {
+    width:100%;
+    height:120px;
+    background-color: #24487D;
+    background-size:cover;
+}
+
+.nsf-logo {
+    float: right;
+    margin-top: 25px;
+}
+
+/* Needed to force NCAR dropdowns to appear above navbar elements */
+.ng-scope #orgNavV1 {
+    z-index: 1500;
+}
+
+
+#orgFooter {
+    text-align: center;
+    padding: 5px 0;
+}
+/* End of NCAR/NSF branding section.
+ */

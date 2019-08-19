@@ -1,0 +1,19 @@
+<!--
+    Partial view for about page.
+-->
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Dashboard Version</h3>
+    </div>
+    <div class="panel-body">
+        {{version.version}}
+    </div>
+</div>
+
+<!--
+    Dismissible alert for no data. The alert is displayed when showAlertMessage
+    is true. The Angular directive alertMessage is defined in:
+    js/alertMessage.js
+-->
+<alert-message><strong>Note:</strong> No data found for version.</alert-message>

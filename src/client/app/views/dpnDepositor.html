@@ -1,0 +1,30 @@
+<!--
+    Partial view for depositors page.
+-->
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <!-- TODO: remove hard-coding -->
+        <th class="col-md-4">Depositor</th>
+        <th class="col-md-8">DPN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="depositor in depositors | orderBy: 'name'">
+        <td>{{ depositor.name }}</td>
+        <!-- only show one based on the status -->
+        <td>
+            <span ng-show="depositor.dpn">
+                Bags: {{ depositor.dpn.bags | number }}<br/>
+                Files: {{ depositor.dpn.files | number }}<br/>
+                Bytes: {{ depositor.dpn.bytes | number }}
+            </span>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<div ng-show="loading">
+    <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
+</div>

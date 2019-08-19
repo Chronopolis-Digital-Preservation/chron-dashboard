@@ -1,0 +1,61 @@
+# Java Maven CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/openjdk:8u151-jdk
+
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v3-dependencies-{{ checksum "pom.xml" }}
+
+      - run:
+          name: "Download Dependencies"
+          command: mvn -s .circleci/settings.xml dependency:go-offline
+
+      - run:
+          name: "Unit Tests"
+          command: mvn -s .circleci/settings.xml test
+
+#      - run:
+#          name: "Static Code Analysis: checkstyle, findbugs, pmd, cdp, and jacoco"
+#          command: mvn -s .circleci/settings.xml site pmd:pmd checkstyle:checkstyle jacoco:report
+
+      - run:
+          name: "Package Gateway and Upload to Artifactory"
+          command: mvn -s .circleci/settings.xml -Dmaven.test.skip=true deploy
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v3-dependencies-{{ checksum "pom.xml" }}
+
+#      - store_test_results:
+#          path: ./target/surefire-reports
+
+#      - store_artifacts:
+#          name: "Upload Surefire Reports to CircleCI"
+#          path: ./target/surefire-reports
+#          destination: unit_test_report
+
+#      - store_artifacts:
+#          name: "Upload Static Analysis Reports to CircleCI"
+#          path: ./target/site/
+#          destination: static_analysis_report
+
+workflows:
+  version: 2
+  chron-workflow:
+    jobs:
+      - build:
+          context: sage
