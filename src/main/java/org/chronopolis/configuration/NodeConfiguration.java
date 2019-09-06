@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@ConfigurationProperties()
+@ConfigurationProperties(prefix = "node")
 public class NodeConfiguration {
 
     // Magic name matches yaml
