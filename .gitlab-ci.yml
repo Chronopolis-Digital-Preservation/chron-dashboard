@@ -1,5 +1,10 @@
 image: maven:3-jdk-8
 
+stages:
+  - build
+  - test
+  - deploy
+
 variables:
   MAVEN_CLI_OPTS: "-s .deploy/settings.xml --batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
@@ -25,3 +30,21 @@ deploy:
     - mvn $MAVEN_CLI_OPTS deploy
   only:
     - master
+
+registry_image:
+  stage: deploy
+  image: centos:7
+  script:
+    - yum -y update && yum clean all
+    - yum install -y buildah
+    - buildah login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - buildah bud --format docker --storage-driver vfs -t $CI_REGISTRY_IMAGE/dashboard:$CI_COMMIT_REF_NAME .
+    - buildah push --storage-driver vfs docker://$CI_REGISTRY_IMAGE/dashboard:$CI_COMMIT_REF_NAME
+  only:
+    refs:
+      - master
+      - merge_requests
+      - tags
+
+
+
