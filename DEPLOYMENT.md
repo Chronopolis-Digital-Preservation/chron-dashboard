@@ -1,6 +1,6 @@
 # Requirements
 * Java 8
-* Java Web Server (we have only used Tomcat)
+* Tomcat 8+
 
 # Deployment
 It is pretty easy to deploy the chronopolis dashboard.
@@ -58,12 +58,12 @@ nodes:
     aceusername: '<ACE username with read rights>'
     acepassword: '<password>'
     environment: 'dpn'
-```    
+```
 You will need to know people that know people to get the appropriate username and passwords to each individual ace/ingest system.
 
 Example application.properties file:
 ```
-dashboard.version=${dashboard.version}
+dashboard.version=@dashboard.version@
 
 # Pretty-print JSON responses
 spring.jackson.serialization.indent_output=true
