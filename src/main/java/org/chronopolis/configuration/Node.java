@@ -5,32 +5,32 @@ import org.springframework.util.StringUtils;
 public class Node {
 
     private String name;
-    private String aceendpoint;
-    private String acehost;
-    private Integer aceport;
-    private String aceusername;
-    private String acepassword;
-    private String ingestendpoint;
-    private String ingesthost;
-    private Integer ingestport;
-    private String ingestusername;
-    private String ingestpassword;
+    private String aceEndpoint;
+    private String aceHost;
+    private Integer acePort;
+    private String aceUsername;
+    private String acePassword;
+    private String ingestEndpoint;
+    private String ingestHost;
+    private Integer ingestPort;
+    private String ingestUsername;
+    private String ingestPassword;
     private String environment;
 
-    public String getAceendpoint() {
-        return aceendpoint;
+    public String getAceEndpoint() {
+        return aceEndpoint;
     }
 
-    public void setAceendpoint(String aceendpoint) {
-        this.aceendpoint = aceendpoint;
+    public void setAceEndpoint(String aceEndpoint) {
+        this.aceEndpoint = aceEndpoint;
     }
 
-    public Integer getAceport() {
-        return aceport;
+    public Integer getAcePort() {
+        return acePort;
     }
 
-    public void setAceport(Integer aceport) {
-        this.aceport = aceport;
+    public void setAcePort(Integer acePort) {
+        this.acePort = acePort;
     }
 
     public String getName() {
@@ -41,40 +41,40 @@ public class Node {
         this.name = name;
     }
 
-    public String getAcehost() {
-        return acehost;
+    public String getAceHost() {
+        return aceHost;
     }
 
-    public void setAcehost(String acehost) {
-        this.acehost = acehost;
+    public void setAceHost(String aceHost) {
+        this.aceHost = aceHost;
     }
 
     public Boolean isIngestNode() {
-        return StringUtils.hasText(this.ingestendpoint);
+        return StringUtils.hasText(this.ingestEndpoint);
     }
 
-    public String getIngestendpoint() {
-        return ingestendpoint;
+    public String getIngestEndpoint() {
+        return ingestEndpoint;
     }
 
-    public void setIngestendpoint(String ingestendpoint) {
-        this.ingestendpoint = ingestendpoint;
+    public void setIngestEndpoint(String ingestEndpoint) {
+        this.ingestEndpoint = ingestEndpoint;
     }
 
-    public String getIngesthost() {
-        return ingesthost;
+    public String getIngestHost() {
+        return ingestHost;
     }
 
-    public void setIngesthost(String ingesthost) {
-        this.ingesthost = ingesthost;
+    public void setIngestHost(String ingestHost) {
+        this.ingestHost = ingestHost;
     }
 
-    public Integer getIngestport() {
-        return ingestport;
+    public Integer getIngestPort() {
+        return ingestPort;
     }
 
-    public void setIngestport(Integer ingestport) {
-        this.ingestport = ingestport;
+    public void setIngestPort(Integer ingestPort) {
+        this.ingestPort = ingestPort;
     }
 
     public String getEnvironment() {
@@ -85,35 +85,35 @@ public class Node {
         this.environment = environment;
     }
 
-    public String getAceusername() {
-        return aceusername;
+    public String getAceUsername() {
+        return aceUsername;
     }
 
-    public void setAceusername(String aceusername) {
-        this.aceusername = aceusername;
+    public void setAceUsername(String aceUsername) {
+        this.aceUsername = aceUsername;
     }
 
-    public String getAcepassword() {
-        return acepassword;
+    public String getAcePassword() {
+        return acePassword;
     }
 
-    public void setAcepassword(String acepassword) {
-        this.acepassword = acepassword;
+    public void setAcePassword(String acePassword) {
+        this.acePassword = acePassword;
     }
 
-    public String getIngestusername() {
-        return ingestusername;
+    public String getIngestUsername() {
+        return ingestUsername;
     }
 
-    public void setIngestusername(String ingestusername) {
-        this.ingestusername = ingestusername;
+    public void setIngestUsername(String ingestUsername) {
+        this.ingestUsername = ingestUsername;
     }
 
-    public String getIngestpassword() {
-        return ingestpassword;
+    public String getIngestPassword() {
+        return ingestPassword;
     }
 
-    public void setIngestpassword(String ingestpassword) {
-        this.ingestpassword = ingestpassword;
+    public void setIngestPassword(String ingestPassword) {
+        this.ingestPassword = ingestPassword;
     }
 }

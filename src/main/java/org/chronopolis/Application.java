@@ -79,13 +79,13 @@ public class Application extends SpringBootServletInitializer {
 
             RemoteNode remoteNode;
 
-            remoteNode = new DefaultRemoteNode(node.getName(), node.getEnvironment(), node.getAceendpoint(), getRestTemplate());
+            remoteNode = new DefaultRemoteNode(node.getName(), node.getEnvironment(), node.getAceEndpoint(), getRestTemplate());
             remoteNodeMap.put(node.getName(), remoteNode);
 
             if (node.isIngestNode()) {
 
                 // UCSD is both ACE and INGEST node so goes in for both roles
-                remoteNode = new RemoteIngestNode(node.getName(), node.getEnvironment(), node.getAceendpoint(), getRestTemplate(), node.getIngestendpoint(), node.getIngesthost(), node.getIngestport());
+                remoteNode = new RemoteIngestNode(node.getName(), node.getEnvironment(), node.getAceEndpoint(), getRestTemplate(), node.getIngestEndpoint(), node.getIngestHost(), node.getIngestPort());
                 remoteNodeMap.put(node.getName(), remoteNode);
             }
         }
@@ -146,12 +146,12 @@ public class Application extends SpringBootServletInitializer {
 
         for (Node node : this.getNodes()) {
 
-            credentialsProvider.setCredentials(new AuthScope(node.getAcehost(), node.getAceport()), new UsernamePasswordCredentials(node.getAceusername(), node.getAcepassword()));
+            credentialsProvider.setCredentials(new AuthScope(node.getAceHost(), node.getAcePort()), new UsernamePasswordCredentials(node.getAceUsername(), node.getAcePassword()));
 
             // UCSD is both ACE and INGEST node
             if (node.isIngestNode()) {
 
-                credentialsProvider.setCredentials(new AuthScope(node.getIngesthost(), node.getIngestport()), new UsernamePasswordCredentials(node.getIngestusername(), node.getIngestpassword()));
+                credentialsProvider.setCredentials(new AuthScope(node.getIngestHost(), node.getIngestPort()), new UsernamePasswordCredentials(node.getIngestUsername(), node.getIngestPassword()));
             }
         }
 
@@ -166,7 +166,7 @@ public class Application extends SpringBootServletInitializer {
 
             if (node.isIngestNode()) {
 
-                HttpHost targetHost = new HttpHost(node.getIngesthost(), node.getIngestport(), "https");
+                HttpHost targetHost = new HttpHost(node.getIngestHost(), node.getIngestPort(), "https");
 
                 authCache.put(targetHost, new BasicScheme());
             }
