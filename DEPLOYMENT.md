@@ -5,66 +5,32 @@
 # Deployment
 It is pretty easy to deploy the chronopolis dashboard.
 
-Drop the dashboard.war file into your Java Web Server's application directory.
+You will need to deploy the built Docker image from the Gitlab repository.
 
+This can be found at: `registry.gitlab.com/chronopolis/chron-dashboard/dashboard`
 
-The dashboard does require one external file to be referenced via Java Virtual Machine Options.
+The application expects that environment variables will be passed in to
+configure each Chronopolis Node. Example environment variables:
 
-Adding the following parameter to the startup script of your java web container should do the trick:
-```
--Dspring.config.location="file:<full_path_to_file>/secrets.yml"
-```
-
-It is recommended that the secrets.yml file be stored in a non-volatile location.
-
-We give this recommendation because during upgrades the secrets.yml file will not be deleted and upgrades will go smoother.
-
-We have a directory called chron-dashboard-home where we store our file.
-
-Example secrets.yml file:
+> Note these match Spring external config relaxed binding rules
+> See: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-relaxed-binding
 
 ```
-nodes:
-  - name: 'UCSD'
-    aceendpoint: 'https://chron.ucsd.edu/'
-    acehost: 'chron.ucsd.edu'
-    aceport: '443'
-    aceusername: '<ACE username with read rights>'
-    acepassword: '<password>'
-    ingestendpoint: 'https://chron-ingest.ucsd.edu:8443/'
-    ingesthost: 'chron-ingest.ucsd.edu'
-    ingestport: '8443'
-    ingestusername: '<Ingest username with read rights>'
-    ingestpassword: '<password>'
-    environment: 'production'
-  - name: 'NCAR'
-    aceendpoint: 'https://chronopolis.ucar.edu/'
-    acehost: 'chronopolis.ucar.edu'
-    aceport: '443'
-    aceusername: '<ACE username with read rights>'
-    acepassword: '<password>'
-    environment: 'production'
-  - name: 'TEST-UMIACS'
-    aceendpoint: 'https://chronopolis00.umiacs.umd.edu/'
-    acehost: 'chronopolis00.umiacs.umd.edu'
-    aceport: 443
-    aceusername: '<ACE username with read rights>'
-    acepassword: '<password>'
-    environment: 'test'
-  - name: 'DPN'
-    aceendpoint: 'https://chrondpn.ucsd.edu/'
-    acehost: 'chrondpn.ucsd.edu'
-    aceport: 443
-    aceusername: '<ACE username with read rights>'
-    acepassword: '<password>'
-    environment: 'dpn'
-```
-You will need to know people that know people to get the appropriate username and passwords to each individual ace/ingest system.
-
-Example application.properties file:
-```
-dashboard.version=@dashboard.version@
-
-# Pretty-print JSON responses
-spring.jackson.serialization.indent_output=true
+CHRON_NODES_0_NAME=UCSD
+CHRON_NODES_0_ACEENDPOINT=https://chron.ucsd.edu/
+CHRON_NODES_0_ACEHOST=chron.ucsd.edu
+CHRON_NODES_0_ACEPORT=443
+CHRON_NODES_0_ACEUSERNAME=ace-user
+CHRON_NODES_0_ACEPASSWORD=ace-password
+CHRON_NODES_0_INGESTENDPOINT=https://chron-ingest.ucsd.edu/
+CHRON_NODES_0_INGESTHOST=chron-ingest.ucsd.edu
+CHRON_NODES_0_INGESTPORT=443
+CHRON_NODES_0_INGESTUSERNAME=ingest-user
+CHRON_NODES_0_INGESTPASSWORD=ingest-password
+CHRON_NODES_0_ENVIRONMENT=production
+CHRON_NODES_1_NAME=DPN
+CHRON_NODES_1_ACEENDPOINT=https://dpn.something
+...
+...
+...
 ```

@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@ConfigurationProperties(prefix = "node")
+@ConfigurationProperties(prefix = "chron")
 public class NodeConfiguration {
 
-    // Magic name matches yaml
+    // Magic name matches chron.nodes from environment variables
+    // Example: CHRON_NODES_0_NAME=UCSD
     private List<Node> nodes = new ArrayList<>();
 
     public List<Node> getNodes() {
