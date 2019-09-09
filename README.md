@@ -26,7 +26,7 @@ You will need to deploy the built Docker image from the Gitlab repository.
 
 This can be found at: `registry.gitlab.com/chronopolis/chron-dashboard/dashboard`
 
-At the moment, you will want to use the `latest` tag.
+At the moment, you will want to use the `master` tag.
 
 ### Requirements for traditional deployment
 - Java8
