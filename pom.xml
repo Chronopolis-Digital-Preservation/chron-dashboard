@@ -5,7 +5,7 @@
 
     <groupId>org.chronopolis</groupId>
     <artifactId>dashboard</artifactId>
-    <version>0.0.8-SNAPSHOT</version>
+    <version>0.0.9-SNAPSHOT</version>
     <name>Chronopolis Dashboard</name>
     <packaging>war</packaging>
 
