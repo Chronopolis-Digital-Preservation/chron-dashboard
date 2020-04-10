@@ -9,9 +9,9 @@ dashboard application for local development.
 
 1. Clone the repo: `git clone git@gitlab.com:chronopolis/chron-dashboard.git`
 1. Change to the project directory: `cd chron-dashboard`
-1. Populate a `.env` file with [Chronopolis node information][./DEPLOYMENT.md]
-1. Build the container image: `docker build -t dashboard` or `podman build -t
-   dashboard`
+1. Populate a `.env` file with Chronopolis node information as [environment variables](#environment-variables)
+1. Build the container image: `docker build -t dashboard .` or `podman build -t
+   dashboard .`
 1. Run an instance of the application: `docker run --rm --env-file=.env -p
    8080:8080 dashboard:latest`
 1. Browse to http://localhost:8080/dashboard
@@ -40,6 +40,8 @@ The application expects that environment variables will be passed in to
 configure each Chronopolis Node. For local development, using a `.env` file
 works well. In a production context it is up to the deploying institution to
 decide what works best for them for populating these variables.
+
+> If you are a UCSD dev/ops member, you can find env var values in LastPass at `Chron-Dashboard Env Vars`
 
 Example environment variables:
 
