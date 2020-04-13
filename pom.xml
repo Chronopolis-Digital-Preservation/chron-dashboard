@@ -22,12 +22,18 @@
           <name>lib-artifacts-releases</name>
           <url>${env.ARTIFACTORY_URL}/maven-release-local</url>
       </repository>
-      <snapshotRepository>
-          <id>ucsd.artifactory</id>
-          <name>lib-artifacts-snapshots</name>
-          <url>${env.ARTIFACTORY_URL}/maven-release-local</url>
-      </snapshotRepository>
     </distributionManagement>
+
+    <repositories>
+      <repository>
+          <id>ucsd.artifactory</id>
+          <name>lib-artifacts-releases</name>
+          <url>${env.ARTIFACTORY_URL}/maven-release-local</url>
+          <snapshots>
+              <enabled>false</enabled>
+          </snapshots>
+      </repository>
+    </repositories>
 
     <properties>
         <java.version>1.8</java.version>
