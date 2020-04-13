@@ -1,65 +1,79 @@
 <!--
     Partial view for storage details page.
 -->
+<div class="row">
+	<div class="col">
 
-<form role="form" class="form-horizontal">
-    <div class="form-group">
-        <label class="col-xs-2 control-label">Ingest Node:</label>
-        <span class="col-xs-2">
-            <!--
-                Build the selection option dropdown list. The ng-model directive
-                creates a two-way binding between the item selected in the list
-                and a variable of the same name in the controller.
-            -->
-            <select class="form-control col-xs-2" ng-options="server as server.node for server in serverSelectionList"
-                ng-model="selectedServer" ng-change="changeServer()">
-            </select>
-        </span>
-        <label class="col-xs-2 control-label">Bag Status:</label>
-        <span class="col-xs-2">
-            <!--
-                Build the selection option dropdown list. The ng-model directive
-                creates a two-way binding between the item selected in the list
-                and a variable of the same name in the controller.
-            -->
-            <select class="form-control col-xs-2" ng-options="bagStatus.status for bagStatus in bagStatusSelectionList"
-                    ng-model="selectedBagStatus" ng-change="changeBagStatus()">
-            </select>
-        </span>
-    </div> <!-- row -->
-</form>
+		<form id="cd-ingest-controls">
+			<div class="row">
+				<div class="col">
+					<label for="cd-ingest-node">Ingest Node</label>
+					<!--
+						Build the selection option dropdown list. The ng-model directive
+						creates a two-way binding between the item selected in the list
+						and a variable of the same name in the controller.
+					-->
+					<select id="cd-ingest-node" class="form-control" ng-options="server as server.node for server in serverSelectionList" ng-model="selectedServer" ng-change="changeServer()"></select>	
+				</div>
+				<div class="col">
+					<label for="cd-bag-status">Bag Status</label>
+					<!--
+						Build the selection option dropdown list. The ng-model directive
+						creates a two-way binding between the item selected in the list
+						and a variable of the same name in the controller.
+					-->
+					<select id="cd-bag-status" class="form-control" ng-options="bagStatus.status for bagStatus in bagStatusSelectionList" ng-model="selectedBagStatus" ng-change="changeBagStatus()"></select>	
+				</div>
+			</div>
+		</form>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Bag Identifier</th>
-            <th>Disk Used</th>
-            <th>Num Files</th>
-            <th>Date Created</th>
-            <th>Date Updated</th>
-            <th>Status</th>
-            <th>Owner</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="storage in ingestStatus | orderBy:'dateUpdated':true">
-            <td>{{storage.identifier}}</td>
-            <td>{{storage.bytes}}</td>
-            <td>{{storage.files}}</td>
-            <td>{{storage.dateCreated}}</td>
-            <td>{{storage.dateUpdated}}</td>
-            <td>{{storage.status}}</td>
-            <td>{{storage.owner}}</td>
-        </tr>
-    </tbody>
-</table>
-<div ng-show="loading">
-    <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
+	</div>
 </div>
 
-<!--
-    Dismissible alert for no data. The alert is displayed when showAlertMessage
-    is true. The Angular directive alertMessage is defined in:
-    js/alertMessage.js
--->
-<alert-message><strong>Note:</strong> No data found for selection.</alert-message>
+<div class="row">
+	<div class="col">
+
+		<div class="table-responsive cd-responsive">
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Bag Identifier</th>
+						<th>Disk Used</th>
+						<th>Num Files</th>
+						<th>Date Created</th>
+						<th>Date Updated</th>
+						<th>Status</th>
+						<th>Owner</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="storage in ingestStatus | orderBy:'dateUpdated':true">
+						<td>{{storage.identifier}}</td>
+						<td>{{storage.bytes}}</td>
+						<td>{{storage.files}}</td>
+						<td>{{storage.dateCreated}}</td>
+						<td>{{storage.dateUpdated}}</td>
+						<td>{{storage.status}}</td>
+						<td>{{storage.owner}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="m-3" ng-show="loading">
+			<div class="d-flex justify-content-center">
+				<div class="spinner-border text-secondary" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</div>
+
+		<!--
+				Dismissible alert for no data. The alert is displayed when showAlertMessage
+				is true. The Angular directive alertMessage is defined in:
+				js/alertMessage.js
+		-->
+		<alert-message><strong>Note:</strong> No data found for selection.</alert-message>
+
+	</div>
+</div>

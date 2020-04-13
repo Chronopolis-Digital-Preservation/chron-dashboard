@@ -1,99 +1,86 @@
 <!--
     Partial view for storage summary page.
 -->
+<div class="row">
+	<div class="col">
 
-<h3>Production</h3>
+		<h3>Production</h3>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th class="col-md-3">Node</th>
-            <th class="col-md-3">Disk Used</th>
-            <th class="col-md-3">Num Bags</th>
-            <th class="col-md-3">Num Files</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="prodstorage in prodStorageStatus | orderBy: 'node'" >
-            <td>{{prodstorage.node}}</td>
-            <td>{{prodstorage.bytes}}</td>
-            <td>{{prodstorage.bags}}</td>
-            <td>{{prodstorage.files}}</td>
-        </tr>
-    </tbody>
-</table>
-<div ng-show="loading.production">
-    <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
+		<table class="table table-sm table-striped">
+			<thead class="thead-dark">
+				<tr class="d-flex">
+					<th class="col-3" scope="col">Node</th>
+					<th class="col-3" scope="col">Disk Used</th>
+					<th class="col-3" scope="col">Num Bags</th>
+					<th class="col-3" scope="col">Num Files</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="d-flex" ng-repeat="prodstorage in prodStorageStatus | orderBy: 'node'" >
+					<td class="col-3">{{prodstorage.node}}</td>
+					<td class="col-3">{{prodstorage.bytes}}</td>
+					<td class="col-3">{{prodstorage.bags}}</td>
+					<td class="col-3">{{prodstorage.files}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="m-3" ng-show="loading.production">
+			<div class="d-flex justify-content-center">
+				<div class="spinner-border text-secondary" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</div>
+
+		<!--
+		Dismissible alert for no data. The alert is displayed when showAlertMessage
+		is true. The Angular directive alertMessage is defined in:
+		js/alertMessage.js
+		-->
+		<alert-message><strong>Note:</strong> No data found for selection.</alert-message>
+
+	</div>
 </div>
 
-<!--
-    Dismissible alert for no data. The alert is displayed when showAlertMessage
-    is true. The Angular directive alertMessage is defined in:
-    js/alertMessage.js
--->
-<alert-message><strong>Note:</strong> No data found for selection.</alert-message>
+<div class="row">
+	<div class="col">
 
+		<h3>Test</h3>
 
-<h3>Test</h3>
+		<table class="table table-sm table-striped">
+			<thead class="thead-dark">
+				<tr class="d-flex">
+					<th class="col-3" scope="col">Node</th>
+					<th class="col-3" scope="col">Disk Used</th>
+					<th class="col-3" scope="col">Num Bags</th>
+					<th class="col-3" scope="col">Num Files</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="d-flex" ng-repeat="teststorage in testStorageStatus | orderBy: 'node'" >
+					<td class="col-3">{{teststorage.node}}</td>
+					<td class="col-3">{{teststorage.bytes}}</td>
+					<td class="col-3">{{teststorage.bags}}</td>
+					<td class="col-3">{{teststorage.files}}</td>
+				</tr>
+			</tbody>
+		</table>
 
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th class="col-md-3">Node</th>
-        <th class="col-md-3">Disk Used</th>
-        <th class="col-md-3">Num Bags</th>
-        <th class="col-md-3">Num Files</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="teststorage in testStorageStatus | orderBy: 'node'" >
-        <td>{{teststorage.node}}</td>
-        <td>{{teststorage.bytes}}</td>
-        <td>{{teststorage.bags}}</td>
-        <td>{{teststorage.files}}</td>
-    </tr>
-    </tbody>
-</table>
-<div ng-show="loading.test">
-    <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
+		<div class="m-3" ng-show="loading.test">
+			<div class="d-flex justify-content-center">
+				<div class="spinner-border text-secondary" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</div>
+
+		<!--
+		Dismissible alert for no data. The alert is displayed when showAlertMessage
+		is true. The Angular directive alertMessage is defined in:
+		js/alertMessage.js
+		-->
+		<alert-message><strong>Note:</strong> No data found for selection.</alert-message>
+
+	</div>
 </div>
-
-<!--
-    Dismissible alert for no data. The alert is displayed when showAlertMessage
-    is true. The Angular directive alertMessage is defined in:
-    js/alertMessage.js
--->
-<alert-message><strong>Note:</strong> No data found for selection.</alert-message>
-
-
-
-<h3>DPN</h3>
-
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th class="col-md-3">Node</th>
-        <th class="col-md-3">Disk Used</th>
-        <th class="col-md-3">Num Bags</th>
-        <th class="col-md-3">Num Files</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="dpnstorage in dpnStorageStatus | orderBy: 'node'" >
-        <td>{{dpnstorage.node}}</td>
-        <td>{{dpnstorage.bytes}}</td>
-        <td>{{dpnstorage.bags}}</td>
-        <td>{{dpnstorage.files}}</td>
-    </tr>
-    </tbody>
-</table>
-<div ng-show="loading.dpn">
-    <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
-</div>
-
-<!--
-    Dismissible alert for no data. The alert is displayed when showAlertMessage
-    is true. The Angular directive alertMessage is defined in:
-    js/alertMessage.js
--->
-<alert-message><strong>Note:</strong> No data found for selection.</alert-message>

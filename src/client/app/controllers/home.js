@@ -14,8 +14,8 @@ app.filter('statusDisplay', function() {
        // var displayHtmlOffline = '<span class="glyphicon glyphicon-remove red"></span><a href="'+ ingestUrl + '" target="_blank">Offline</a>';
 
         // TODO: Note:  Removed link as it was not pointing to ingestUrl.  Try to figure out why later.
-        var displayHtmlOnline = '<span class="glyphicon glyphicon-ok green"></span> Online';
-        var displayHtmlOffline = '<span class="glyphicon glyphicon-remove red"></span> Offline';
+        var displayHtmlOnline = '<span class="badge badge-success">Online</span>';
+        var displayHtmlOffline = '<span class="badge badge-danger">Offline</span>';
 
         if (status == null) {
             return displayHtmlBlank;

@@ -1,3 +1,5 @@
+// OBSOLETE FILE
+
 if (typeof hideNSF === 'undefined') {
     const hideNSF = false;
 }

@@ -36,10 +36,6 @@ app.config(function ($routeProvider, $locationProvider) {
         templateUrl: 'views/aceDepositor.html',
         controller: 'aceDepositorController'
     });
-    $routeProvider.when('/dpnDepositor', {
-        templateUrl: 'views/dpnDepositor.html',
-        controller: 'dpnDepositorController'
-    });
 
     // routing for the storage summary page
     $routeProvider.when('/aceSummary', {

@@ -1,102 +1,98 @@
 <!--
     Partial view for home page.
 -->
-<h3>Production</h3>
+<div class="row">
+	<div class="col">
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th class="col-md-4">Node</th>
-            <th class="col-md-4">Ace Status</th>
-            <th class="col-md-4">Ingest Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="prodServer in prodServerStatus | orderBy: 'node'">
-            <td>{{prodServer.node}}</td>
-            <!-- only show one based on the aceStatus -->
-            <td ng-show="{{prodServer.aceStatus}}"><span class="glyphicon glyphicon-ok green"></span> <a href="{{prodServer.url}}" target="_blank">Online</a></td>
-            <td ng-show="!{{prodServer.aceStatus}}"><span class="glyphicon glyphicon-remove red"></span> <a href="{{prodServer.url}}" target="_blank">Offline</a></td>
+		<h3>Production</h3>
 
-            <!-- <td>{{ formatting.onlineIngestStatusDisplay(prodServer.ingestStatus, prodServer.ingestUrl) }} </td>  -->
-            <td><span ng-bind-html='prodServer.ingestStatus | statusDisplay:prodServer.ingestStatus:prodServer.ingestUrl'></span></td>
+		<table class="table table-sm table-striped">
+			<thead class="thead-dark">
+				<tr class="d-flex">
+					<th class="col-4" scope="col">Node</th>
+					<th class="col-4" scope="col">Ace Status</th>
+					<th class="col-4" scope="col">Ingest Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="d-flex" ng-repeat="prodServer in prodServerStatus | orderBy: 'node'">
+					<td class="col-4">{{prodServer.node}}</td>
+					<!-- only show one based on the aceStatus -->
+					<td class="col-4" ng-show="{{prodServer.aceStatus}}">
+						<a class="badge badge-success" href="{{prodServer.url}}" target="_blank">Online</a>
+					</td>
+					<td class="col-4" ng-show="!{{prodServer.aceStatus}}">
+						<a class="badge badge-danger" href="{{prodServer.url}}" target="_blank">Offline</a>
+					</td>
+					<td class="col-4">
+						<span ng-bind-html='prodServer.ingestStatus | statusDisplay:prodServer.ingestStatus:prodServer.ingestUrl'></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 
-         </tr>
-     </tbody>
- </table>
- <div ng-show="loading.production">
-     <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
- </div>
+		<div class="m-3" ng-show="loading.production">
+			<div class="d-flex justify-content-center">
+				<div class="spinner-border text-secondary" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</div>		
 
- <!--
-     Dismissible alert for no data. The alert is displayed when showAlertMessage
-     is true. The Angular directive alertMessage is defined in:
-     js/alertMessage.js
- -->
-<alert-message><strong>Note:</strong> No data found for selection.</alert-message>
+		<!--
+				Dismissible alert for no data. The alert is displayed when showAlertMessage
+				is true. The Angular directive alertMessage is defined in:
+				js/alertMessage.js
+		-->
+		<alert-message><strong>Note:</strong> No data found for selection.</alert-message>
 
-<h3>Test</h3>
-
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th class="col-md-4">Node</th>
-        <th class="col-md-4">Ace Status</th>
-        <th class="col-md-4">Ingest Status</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="testServer in testServerStatus | orderBy: 'node'">
-        <td>{{testServer.node}}</td>
-        <!-- only show one based on the aceStatus -->
-        <td ng-show="{{testServer.aceStatus}}"><span class="glyphicon glyphicon-ok green"></span> <a href="{{testServer.url}}" target="_blank">Online</a></td>
-        <td ng-show="!{{testServer.aceStatus}}"><span class="glyphicon glyphicon-remove red"></span> <a href="{{testServer.url}}" target="_blank">Offline</a></td>
-
-        <td><span ng-bind-html='testServer.ingestStatus | statusDisplay:testServer.ingestStatus:testServer.ingestUrl'></span></td>
-    </tr>
-    </tbody>
-</table>
-<div ng-show="loading.test">
-    <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
+	</div>
 </div>
 
-<!--
-    Dismissible alert for no data. The alert is displayed when showAlertMessage
-    is true. The Angular directive alertMessage is defined in:
-    js/alertMessage.js
--->
-<alert-message><strong>Note:</strong> No data found for selection.</alert-message>
+<div class="row">
+	<div class="col">
 
+		<h3>Test</h3>
 
-<h3>DPN</h3>
+		<table class="table table-sm table-striped">
+			<thead class="thead-dark">
+				<tr class="d-flex">
+					<th class="col-4" scope="col">Node</th>
+					<th class="col-4" scope="col">Ace Status</th>
+					<th class="col-4" scope="col">Ingest Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="d-flex" ng-repeat="testServer in testServerStatus | orderBy: 'node'">
+					<td class="col-4">{{testServer.node}}</td>
+					<!-- only show one based on the aceStatus -->
+					<td class="col-4" ng-show="{{testServer.aceStatus}}">
+						<a class="badge badge-success" href="{{testServer.url}}" target="_blank">Online</a>
+					</td>
+					<td class="col-4" ng-show="!{{testServer.aceStatus}}">
+						<a class="badge badge-danger" href="{{testServer.url}}" target="_blank">Offline</a>
+					</td>
+					<td class="col-4">
+						<span ng-bind-html='testServer.ingestStatus | statusDisplay:testServer.ingestStatus:testServer.ingestUrl'></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th class="col-md-4">Node</th>
-        <th class="col-md-4">Ace Status</th>
-        <th class="col-md-4">Ingest Status</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="dpnServer in dpnServerStatus | orderBy: 'node'">
-        <td>{{dpnServer.node}}</td>
-        <!-- only show one based on the aceStatus -->
-        <td ng-show="{{dpnServer.aceStatus}}"><span class="glyphicon glyphicon-ok green"></span> <a href="{{dpnServer.url}}" target="_blank">Online</a></td>
+		<div class="m-3" ng-show="loading.test">
+			<div class="d-flex justify-content-center">
+				<div class="spinner-border text-secondary" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</div>
 
-        <td ng-show="!{{dpnServer.aceStatus}}"><span class="glyphicon glyphicon-remove red"></span> <a href="{{dpnServer.url}}" target="_blank">Offline</a></td>
-        <td><span ng-bind-html='dpnServer.ingestStatus | statusDisplay:dpnServer.ingestStatus:dpnServer.ingestUrl'></span></td>
-    </tr>
-    </tbody>
-</table>
-<div ng-show="loading.dpn">
-    <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
+		<!--
+				Dismissible alert for no data. The alert is displayed when showAlertMessage
+				is true. The Angular directive alertMessage is defined in:
+				js/alertMessage.js
+		-->
+		<alert-message><strong>Note:</strong> No data found for selection.</alert-message>
+
+	</div>
 </div>
-
-<!--
-    Dismissible alert for no data. The alert is displayed when showAlertMessage
-    is true. The Angular directive alertMessage is defined in:
-    js/alertMessage.js
--->
-<alert-message><strong>Note:</strong> No data found for selection.</alert-message>
-

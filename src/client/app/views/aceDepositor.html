@@ -1,30 +1,39 @@
 <!--
     Partial view for depositors page.
 -->
+<div class="row">
+	<div class="col">
 
-<table class="table table-bordered">
-    <thead>
-    <th>Depositor</th>
-    <th ng-repeat="server in servers | orderBy: 'node'">
-        {{ server.node }}
-    </th>
-    </thead>
-    <tbody>
-    <tr ng-repeat="depositor in depositors | orderBy: 'name'">
+		<div class="table-responsive cd-responsive">
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Depositor</th>
+						<th ng-repeat="server in servers | orderBy: 'node'">{{ server.node }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="depositor in depositors | orderBy: 'name'">
+						<th scope="row">{{ depositor.name }}</td>
+						<td ng-repeat="server in servers | orderBy: 'node'">
+							<ul class="list-unstyled" ng-show="depositor[server.node]">
+								<li><b>Bags:</b> <span class="text-muted">{{ depositor[server.node].bags | number }}</span></li>
+								<li><b>Files:</b> <span class="text-muted">{{ depositor[server.node].files | number }}</span></li>
+								<li><b>Bytes:</b> <span class="text-muted">{{ depositor[server.node].bytes | number }}</span></li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-        <td>{{ depositor.name }}</td>
+		<div class="m-3" ng-show="loading">
+			<div class="d-flex justify-content-center">
+				<div class="spinner-border text-secondary" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</div>
 
-        <td ng-repeat="server in servers | orderBy: 'node'">
-            <span ng-show="depositor[server.node]">
-                Bags: {{ depositor[server.node].bags | number }}<br/>
-                Files: {{ depositor[server.node].files | number }}<br/>
-                Bytes: {{ depositor[server.node].bytes | number }}
-            </span>
-        </td>
-    </tr>
-    </tbody>
-
-</table>
-<div ng-show="loading">
-    <span class="glyphicon glyphicon-refresh spinning"></span> Loading...
+	</div>
 </div>
