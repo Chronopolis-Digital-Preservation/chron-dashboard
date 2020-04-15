@@ -1,0 +1,15 @@
+deploy_staging:
+  extends:
+    - .auto-deploy
+  environment:
+    name: staging
+    url: https://$APP_HOST_STAGING
+  variables:
+    APP_HOST: $APP_HOST_STAGING
+    DEPLOY_TAG: stable
+    KUBE_NAMESPACE: $KUBE_NAMESPACE_STAGING
+    TLS_CRT: $TLS_CRT_STAGING
+    TLS_KEY: $TLS_KEY_STAGING
+  only:
+    refs:
+      - master

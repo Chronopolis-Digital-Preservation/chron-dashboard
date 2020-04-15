@@ -9,6 +9,10 @@ variables:
   MAVEN_CLI_OPTS: "-s .deploy/settings.xml --batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
+include:
+  - local: ci/helm-deploy.yml
+  - local: ci/review.yml
+
 cache:
   paths:
     - .m2/repository/
@@ -46,5 +50,55 @@ registry_image:
       - merge_requests
       - tags
 
+# Helm deployment helper functions
+.deploy_helpers: &deploy_helpers |
+  function deploy() {
+    if helm ls --namespace="$KUBE_NAMESPACE" -q | grep -q "$HELM_RELEASE_NAME"; then
+      echo "Deploying new release: $HELM_RELEASE_NAME..."
+    else
+      first_release="yes"
+      echo "Deploying initial release: $HELM_RELEASE_NAME..."
+    fi
+    helm upgrade --install \
+        --wait \
+        --set image.repository="$CI_REGISTRY_IMAGE" \
+        --set image.tag="$DEPLOY_TAG" \
+        --set image.host="$APP_HOST" \
+        --set ingress.enabled="true" \
+        --set ingress.hosts[0].host="$APP_HOST" \
+        --set ingress.hosts[0].paths[0]="/dashboard" \
+        ${TLS_CRT+--set ingress.tls[0].hosts[0]="$APP_HOST"} \
+        ${TLS_CRT+--set ingress.tls[0].secretName="dashboard-tls"} \
+        ${TLS_CRT+--set tls.crt="$TLS_CRT"} \
+        ${TLS_CRT+--set tls.key="$TLS_KEY"} \
+        --namespace="$KUBE_NAMESPACE" \
+        "$HELM_RELEASE_NAME" \
+        dashboard/
+  }
+
+  function delete() {
+    echo "Deleting release: $HELM_RELEASE_NAME..."
+    helm delete --namespace "$KUBE_NAMESPACE" "$HELM_RELEASE_NAME"
+  }
+
+  # note: should not be used in production
+  function delete_stateful_set_pvcs(){
+    echo "Deleting any StatefulSet Persistent Volume Claims..."
+    kubectl delete pvc -l release="$HELM_RELEASE_NAME" --namespace="$KUBE_NAMESPACE"
+  }
+
+# Helm3-based image for tiller-less deploys
+.auto-deploy:
+  image: "dtzar/helm-kubectl:3.1.2"
+  stage: deploy
+  variables:
+    HELM_RELEASE_NAME: dashboard
+    KUBECONFIG: /etc/deploy/config
+  before_script:
+    - *deploy_helpers
+    - mkdir -p `dirname $KUBECONFIG`
+    - echo ${KUBE_ROLE_CONFIG} | base64 -d > $KUBECONFIG
+  script:
+    - deploy
 
 
