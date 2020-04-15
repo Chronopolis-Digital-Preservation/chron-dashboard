@@ -1,0 +1,42 @@
+build-image:
+  extends:
+    - .kaniko-build
+    - .only-refs-default
+  script:
+    - build_image_for "production"
+
+# Build with Kaniko, adding a stable tag to master builds
+.build_helpers: &build_helpers |
+  set -x
+  build_image_for() {
+    if test $# -ne 1 ; then
+        echo "You must specify a build target from the Dockerfile. example: build_image_for 'development'"
+      exit 1
+    fi
+    image_target=$1
+    destination="--destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA"
+    if [ "$CI_COMMIT_REF_NAME" = "master" ]; then
+      destination="$destination --destination $CI_REGISTRY_IMAGE:stable"
+    fi
+    /kaniko/executor --context $CI_PROJECT_DIR --target "$image_target" --cache=true --dockerfile "$CI_PROJECT_DIR/Dockerfile" $destination
+  }
+
+# Use Kaniko for building container images
+.kaniko-build:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug-v0.17.1
+    entrypoint: [""]
+  before_script:
+    - *build_helpers
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+
+# Default only -> refs settings for all jobs
+# see: https://docs.gitlab.com/ee/ci/yaml/#onlyrefsexceptrefs
+.only-refs-default:
+  only:
+    refs:
+      - master
+      - merge_requests
+      - tags
+    

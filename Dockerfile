@@ -10,6 +10,6 @@ RUN mvn dependency:go-offline
 COPY . .
 RUN mvn package
 
-FROM tomcat:${TOMCAT_VERSION}-jdk${JAVA_VERSION}
+FROM tomcat:${TOMCAT_VERSION}-jdk${JAVA_VERSION} as production
 VOLUME /tmp
 COPY --from=builder /dashboard/target/dashboard-*.war /usr/local/tomcat/webapps/dashboard.war
