@@ -27,6 +27,199 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: "CHRON_NODES_0_NAME"
+              value: {{ .Values.chron.nodes_0.name }}
+            - name: "CHRON_NODES_0_ACEENDPOINT"
+              value: {{ .Values.chron.nodes_0.aceendpoint }}
+            - name: "CHRON_NODES_0_ACEHOST"
+              value: {{ .Values.chron.nodes_0.acehost }}
+            - name: "CHRON_NODES_0_ACEPORT"
+              value: {{ .Values.chron.nodes_0.aceport | quote }}
+            - name: "CHRON_NODES_0_ACEUSERNAME"
+              value: {{ .Values.chron.nodes_0.aceusername }}
+            - name: "CHRON_NODES_0_ACEPASSWORD"
+              value: {{ .Values.chron.nodes_0.acepassword }}
+            - name: "CHRON_NODES_0_INGESTENDPOINT"
+              value: {{ .Values.chron.nodes_0.ingestendpoint }}
+            - name: "CHRON_NODES_0_INGESTHOST"
+              value: {{ .Values.chron.nodes_0.ingesthost }}
+            - name: "CHRON_NODES_0_INGESTPORT"
+              value: {{ .Values.chron.nodes_0.ingestport | quote }}
+            - name: "CHRON_NODES_0_INGESTUSERNAME"
+              value: {{ .Values.chron.nodes_0.ingestusername }}
+            - name: "CHRON_NODES_0_INGESTPASSWORD"
+              value: {{ .Values.chron.nodes_0.ingestpassword }}
+            - name: "CHRON_NODES_0_ENVIRONMENT"
+              value: {{ .Values.chron.nodes_0.environment }}
+            - name: "CHRON_NODES_1_NAME"
+              value: {{ .Values.chron.nodes_1.name }}
+            - name: "CHRON_NODES_1_ACEENDPOINT"
+              value: {{ .Values.chron.nodes_1.aceendpoint }}
+            - name: "CHRON_NODES_1_ACEHOST"
+              value: {{ .Values.chron.nodes_1.acehost }}
+            - name: "CHRON_NODES_1_ACEPORT"
+              value: {{ .Values.chron.nodes_1.aceport | quote }}
+            - name: "CHRON_NODES_1_ACEUSERNAME"
+              value: {{ .Values.chron.nodes_1.aceusername }}
+            - name: "CHRON_NODES_1_ACEPASSWORD"
+              value: {{ .Values.chron.nodes_1.acepassword }}
+            - name: "CHRON_NODES_1_INGESTENDPOINT"
+              value: {{ .Values.chron.nodes_1.ingestendpoint }}
+            - name: "CHRON_NODES_1_INGESTHOST"
+              value: {{ .Values.chron.nodes_1.ingesthost }}
+            - name: "CHRON_NODES_1_INGESTPORT"
+              value: {{ .Values.chron.nodes_1.ingestport | quote }}
+            - name: "CHRON_NODES_1_INGESTUSERNAME"
+              value: {{ .Values.chron.nodes_1.ingestusername }}
+            - name: "CHRON_NODES_1_INGESTPASSWORD"
+              value: {{ .Values.chron.nodes_1.ingestpassword }}
+            - name: "CHRON_NODES_1_ENVIRONMENT"
+              value: {{ .Values.chron.nodes_1.environment }}
+            - name: "CHRON_NODES_2_NAME"
+              value: {{ .Values.chron.nodes_2.name }}
+            - name: "CHRON_NODES_2_ACEENDPOINT"
+              value: {{ .Values.chron.nodes_2.aceendpoint }}
+            - name: "CHRON_NODES_2_ACEHOST"
+              value: {{ .Values.chron.nodes_2.acehost }}
+            - name: "CHRON_NODES_2_ACEPORT"
+              value: {{ .Values.chron.nodes_2.aceport | quote }}
+            - name: "CHRON_NODES_2_ACEUSERNAME"
+              value: {{ .Values.chron.nodes_2.aceusername }}
+            - name: "CHRON_NODES_2_ACEPASSWORD"
+              value: {{ .Values.chron.nodes_2.acepassword }}
+            - name: "CHRON_NODES_2_INGESTENDPOINT"
+              value: {{ .Values.chron.nodes_2.ingestendpoint }}
+            - name: "CHRON_NODES_2_INGESTHOST"
+              value: {{ .Values.chron.nodes_2.ingesthost }}
+            - name: "CHRON_NODES_2_INGESTPORT"
+              value: {{ .Values.chron.nodes_2.ingestport | quote }}
+            - name: "CHRON_NODES_2_INGESTUSERNAME"
+              value: {{ .Values.chron.nodes_2.ingestusername }}
+            - name: "CHRON_NODES_2_INGESTPASSWORD"
+              value: {{ .Values.chron.nodes_2.ingestpassword }}
+            - name: "CHRON_NODES_2_ENVIRONMENT"
+              value: {{ .Values.chron.nodes_2.environment }}
+            - name: "CHRON_NODES_3_NAME"
+              value: {{ .Values.chron.nodes_3.name }}
+            - name: "CHRON_NODES_3_ACEENDPOINT"
+              value: {{ .Values.chron.nodes_3.aceendpoint }}
+            - name: "CHRON_NODES_3_ACEHOST"
+              value: {{ .Values.chron.nodes_3.acehost }}
+            - name: "CHRON_NODES_3_ACEPORT"
+              value: {{ .Values.chron.nodes_3.aceport | quote }}
+            - name: "CHRON_NODES_3_ACEUSERNAME"
+              value: {{ .Values.chron.nodes_3.aceusername }}
+            - name: "CHRON_NODES_3_ACEPASSWORD"
+              value: {{ .Values.chron.nodes_3.acepassword }}
+            - name: "CHRON_NODES_3_INGESTENDPOINT"
+              value: {{ .Values.chron.nodes_3.ingestendpoint }}
+            - name: "CHRON_NODES_3_INGESTHOST"
+              value: {{ .Values.chron.nodes_3.ingesthost }}
+            - name: "CHRON_NODES_3_INGESTPORT"
+              value: {{ .Values.chron.nodes_3.ingestport | quote }}
+            - name: "CHRON_NODES_3_INGESTUSERNAME"
+              value: {{ .Values.chron.nodes_3.ingestusername }}
+            - name: "CHRON_NODES_3_INGESTPASSWORD"
+              value: {{ .Values.chron.nodes_3.ingestpassword }}
+            - name: "CHRON_NODES_3_ENVIRONMENT"
+              value: {{ .Values.chron.nodes_3.environment }}
+            - name: "CHRON_NODES_4_NAME"
+              value: {{ .Values.chron.nodes_4.name }}
+            - name: "CHRON_NODES_4_ACEENDPOINT"
+              value: {{ .Values.chron.nodes_4.aceendpoint }}
+            - name: "CHRON_NODES_4_ACEHOST"
+              value: {{ .Values.chron.nodes_4.acehost }}
+            - name: "CHRON_NODES_4_ACEPORT"
+              value: {{ .Values.chron.nodes_4.aceport | quote }}
+            - name: "CHRON_NODES_4_ACEUSERNAME"
+              value: {{ .Values.chron.nodes_4.aceusername }}
+            - name: "CHRON_NODES_4_ACEPASSWORD"
+              value: {{ .Values.chron.nodes_4.acepassword }}
+            - name: "CHRON_NODES_4_INGESTENDPOINT"
+              value: {{ .Values.chron.nodes_4.ingestendpoint }}
+            - name: "CHRON_NODES_4_INGESTHOST"
+              value: {{ .Values.chron.nodes_4.ingesthost }}
+            - name: "CHRON_NODES_4_INGESTPORT"
+              value: {{ .Values.chron.nodes_4.ingestport | quote }}
+            - name: "CHRON_NODES_4_INGESTUSERNAME"
+              value: {{ .Values.chron.nodes_4.ingestusername }}
+            - name: "CHRON_NODES_4_INGESTPASSWORD"
+              value: {{ .Values.chron.nodes_4.ingestpassword }}
+            - name: "CHRON_NODES_4_ENVIRONMENT"
+              value: {{ .Values.chron.nodes_4.environment }}
+            - name: "CHRON_NODES_5_NAME"
+              value: {{ .Values.chron.nodes_5.name }}
+            - name: "CHRON_NODES_5_ACEENDPOINT"
+              value: {{ .Values.chron.nodes_5.aceendpoint }}
+            - name: "CHRON_NODES_5_ACEHOST"
+              value: {{ .Values.chron.nodes_5.acehost }}
+            - name: "CHRON_NODES_5_ACEPORT"
+              value: {{ .Values.chron.nodes_5.aceport | quote }}
+            - name: "CHRON_NODES_5_ACEUSERNAME"
+              value: {{ .Values.chron.nodes_5.aceusername }}
+            - name: "CHRON_NODES_5_ACEPASSWORD"
+              value: {{ .Values.chron.nodes_5.acepassword }}
+            - name: "CHRON_NODES_5_INGESTENDPOINT"
+              value: {{ .Values.chron.nodes_5.ingestendpoint }}
+            - name: "CHRON_NODES_5_INGESTHOST"
+              value: {{ .Values.chron.nodes_5.ingesthost }}
+            - name: "CHRON_NODES_5_INGESTPORT"
+              value: {{ .Values.chron.nodes_5.ingestport | quote }}
+            - name: "CHRON_NODES_5_INGESTUSERNAME"
+              value: {{ .Values.chron.nodes_5.ingestusername }}
+            - name: "CHRON_NODES_5_INGESTPASSWORD"
+              value: {{ .Values.chron.nodes_5.ingestpassword }}
+            - name: "CHRON_NODES_5_ENVIRONMENT"
+              value: {{ .Values.chron.nodes_5.environment }}
+            - name: "CHRON_NODES_6_NAME"
+              value: {{ .Values.chron.nodes_6.name }}
+            - name: "CHRON_NODES_6_ACEENDPOINT"
+              value: {{ .Values.chron.nodes_6.aceendpoint }}
+            - name: "CHRON_NODES_6_ACEHOST"
+              value: {{ .Values.chron.nodes_6.acehost }}
+            - name: "CHRON_NODES_6_ACEPORT"
+              value: {{ .Values.chron.nodes_6.aceport | quote }}
+            - name: "CHRON_NODES_6_ACEUSERNAME"
+              value: {{ .Values.chron.nodes_6.aceusername }}
+            - name: "CHRON_NODES_6_ACEPASSWORD"
+              value: {{ .Values.chron.nodes_6.acepassword }}
+            - name: "CHRON_NODES_6_INGESTENDPOINT"
+              value: {{ .Values.chron.nodes_6.ingestendpoint }}
+            - name: "CHRON_NODES_6_INGESTHOST"
+              value: {{ .Values.chron.nodes_6.ingesthost }}
+            - name: "CHRON_NODES_6_INGESTPORT"
+              value: {{ .Values.chron.nodes_6.ingestport | quote }}
+            - name: "CHRON_NODES_6_INGESTUSERNAME"
+              value: {{ .Values.chron.nodes_6.ingestusername }}
+            - name: "CHRON_NODES_6_INGESTPASSWORD"
+              value: {{ .Values.chron.nodes_6.ingestpassword }}
+            - name: "CHRON_NODES_6_ENVIRONMENT"
+              value: {{ .Values.chron.nodes_6.environment }}
+            - name: "CHRON_NODES_7_NAME"
+              value: {{ .Values.chron.nodes_7.name }}
+            - name: "CHRON_NODES_7_ACEENDPOINT"
+              value: {{ .Values.chron.nodes_7.aceendpoint }}
+            - name: "CHRON_NODES_7_ACEHOST"
+              value: {{ .Values.chron.nodes_7.acehost }}
+            - name: "CHRON_NODES_7_ACEPORT"
+              value: {{ .Values.chron.nodes_7.aceport | quote }}
+            - name: "CHRON_NODES_7_ACEUSERNAME"
+              value: {{ .Values.chron.nodes_7.aceusername }}
+            - name: "CHRON_NODES_7_ACEPASSWORD"
+              value: {{ .Values.chron.nodes_7.acepassword }}
+            - name: "CHRON_NODES_7_INGESTENDPOINT"
+              value: {{ .Values.chron.nodes_7.ingestendpoint }}
+            - name: "CHRON_NODES_7_INGESTHOST"
+              value: {{ .Values.chron.nodes_7.ingesthost }}
+            - name: "CHRON_NODES_7_INGESTPORT"
+              value: {{ .Values.chron.nodes_7.ingestport | quote }}
+            - name: "CHRON_NODES_7_INGESTUSERNAME"
+              value: {{ .Values.chron.nodes_7.ingestusername }}
+            - name: "CHRON_NODES_7_INGESTPASSWORD"
+              value: {{ .Values.chron.nodes_7.ingestpassword }}
+            - name: "CHRON_NODES_7_ENVIRONMENT"
+              value: {{ .Values.chron.nodes_7.environment }}
           ports:
             - name: http
               containerPort: 8080
