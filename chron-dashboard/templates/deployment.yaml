@@ -1,28 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "dashboard.fullname" . }}
+  name: {{ include "chron-dashboard.fullname" . }}
   labels:
-    {{- include "dashboard.labels" . | nindent 4 }}
+    {{- include "chron-dashboard.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "dashboard.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
-      role: application
+      {{- include "chron-dashboard.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "dashboard.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-        role: application
+        {{- include "chron-dashboard.selectorLabels" . | nindent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "dashboard.serviceAccountName" . }}
+      serviceAccountName: {{ include "chron-dashboard.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -35,8 +31,8 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
-                    livenessProbe:
-          httpGet:
+          livenessProbe:
+            httpGet:
               path: /dashboard
               port: http
           readinessProbe:

@@ -10,14 +10,14 @@ deploy_review:
     - .review_context
   environment:
     name: review/$CI_MERGE_REQUEST_ID
-    url: http://dashboard-$CI_MERGE_REQUEST_ID.$REVIEW_DOMAIN
+    url: http://chron-dashboard-$CI_MERGE_REQUEST_ID.$REVIEW_DOMAIN
     on_stop: cleanup_review
     auto_stop_in: 1 week
   variables:
-    APP_HOST: dashboard-$CI_MERGE_REQUEST_ID.$REVIEW_DOMAIN
+    APP_HOST: chron-dashboard-$CI_MERGE_REQUEST_ID.$REVIEW_DOMAIN
     AUTH_METHOD: developer
     DEPLOY_TAG: $CI_COMMIT_SHA
-    HELM_RELEASE_NAME: dashboard-$CI_MERGE_REQUEST_ID
+    HELM_RELEASE_NAME: chron-dashboard-$CI_MERGE_REQUEST_ID
     KUBE_NAMESPACE: $KUBE_NAMESPACE_REVIEW
 
 cleanup_review:
@@ -28,13 +28,13 @@ cleanup_review:
     - .review_context
   environment:
     name: review/$CI_MERGE_REQUEST_ID
-    url: http://dashboard-$CI_MERGE_REQUEST_ID.$REVIEW_DOMAIN
+    url: http://chron-dashboard-$CI_MERGE_REQUEST_ID.$REVIEW_DOMAIN
     action: stop
   variables:
-    APP_HOST: dashboard-$CI_MERGE_REQUEST_ID.$REVIEW_DOMAIN
+    APP_HOST: chron-dashboard-$CI_MERGE_REQUEST_ID.$REVIEW_DOMAIN
     DEPLOY_TAG: $CI_COMMIT_SHA
     GIT_STRATEGY: none
-    HELM_RELEASE_NAME: dashboard-$CI_MERGE_REQUEST_ID
+    HELM_RELEASE_NAME: chron-dashboard-$CI_MERGE_REQUEST_ID
     KUBE_NAMESPACE: $KUBE_NAMESPACE_REVIEW
   script:
     - delete

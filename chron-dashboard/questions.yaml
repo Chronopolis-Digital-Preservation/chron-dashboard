@@ -19,7 +19,7 @@ questions:
   group: "Services and Load Balancing"
   subquestions:
   - variable: ingress.hosts[0].host
-    default: jollyroger.local
+    default: chron-dashboard.local
     description: "Hostname for the jollyroger! installation"
     type: hostname
     required: true
@@ -33,6 +33,6 @@ questions:
 - variable: image.host
   type: string
   group: "Application Host"
-  default: jollyroger.local
+  default: chron-dashboard.local
   label: "Application hostname URL (should match ingress hostname)"
   description: "Application hostname URL (should match ingress hostname)"

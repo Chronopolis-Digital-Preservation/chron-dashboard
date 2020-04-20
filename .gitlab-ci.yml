@@ -46,7 +46,7 @@ deploy:
       echo "Deploying initial release: $HELM_RELEASE_NAME..."
     fi
     helm upgrade --install \
-        --wait \
+        --atomic \
         --set image.repository="$CI_REGISTRY_IMAGE" \
         --set image.tag="$DEPLOY_TAG" \
         --set image.host="$APP_HOST" \
@@ -54,12 +54,12 @@ deploy:
         --set ingress.hosts[0].host="$APP_HOST" \
         --set ingress.hosts[0].paths[0]="/dashboard" \
         ${TLS_CRT+--set ingress.tls[0].hosts[0]="$APP_HOST"} \
-        ${TLS_CRT+--set ingress.tls[0].secretName="dashboard-tls"} \
+        ${TLS_CRT+--set ingress.tls[0].secretName="chron-dashboard-tls"} \
         ${TLS_CRT+--set tls.crt="$TLS_CRT"} \
         ${TLS_CRT+--set tls.key="$TLS_KEY"} \
         --namespace="$KUBE_NAMESPACE" \
         "$HELM_RELEASE_NAME" \
-        dashboard/
+        chron-dashboard/
   }
 
   function delete() {
@@ -78,7 +78,7 @@ deploy:
   image: "dtzar/helm-kubectl:3.1.2"
   stage: deploy
   variables:
-    HELM_RELEASE_NAME: dashboard
+    HELM_RELEASE_NAME: chron-dashboard
     KUBECONFIG: /etc/deploy/config
   before_script:
     - *deploy_helpers
