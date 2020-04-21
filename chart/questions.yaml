@@ -20,13 +20,13 @@ questions:
   subquestions:
   - variable: ingress.hosts[0].host
     default: chron-dashboard.local
-    description: "Hostname for the jollyroger! installation"
+    description: "Hostname for the chron-dashboard! installation"
     type: hostname
     required: true
     label: Hostname
   - variable: ingress.hosts[0].paths[0]
-    default: /
-    description: "Ingress host path for the jollyroger! installation"
+    default: /dashboard
+    description: "Ingress host path for the chron-dashboard! installation"
     type: string
     required: true
     label: Path

@@ -1,3 +1,5 @@
+image: maven:3-jdk-8
+
 stages:
   - build
   - test
@@ -25,19 +27,16 @@ cache:
 
 build_app:
   stage: build
-  image: maven:3-jdk-8
   script:
     - mvn $MAVEN_CLI_OPTS compile
 
 test:
   stage: test
-  image: maven:3-jdk-8
   script:
     - mvn $MAVEN_CLI_OPTS test
 
 deploy:
   stage: deploy
-  image: maven:3-jdk-8
   script:
     - mvn $MAVEN_CLI_OPTS deploy
   only:
