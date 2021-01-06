@@ -20,8 +20,8 @@ public class DefaultRemoteNode implements RemoteNode {
 
         this.nodeName = nodeName;
         this.environment = environment;
-        this.aceHostUri = aceHostUri + "ace-am";
-        this.aceHostJsonUri = aceHostUri + "ace-am/Status?count=20000&json=true";
+        this.aceHostUri = aceHostUri;
+        this.aceHostJsonUri = aceHostUri + "/Status?count=20000&json=true";
         this.restTemplate = restTemplate;
     }
 
