@@ -55,6 +55,7 @@ app.factory('formatting', function () {
 
         var sizesIndex;
         var sizes = ["Bytes", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"];
+        var sizesDecimal = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
         if (bytes == "") {
             return "";
@@ -68,7 +69,13 @@ app.factory('formatting', function () {
         if (sizesIndex > sizes.length - 1) {
             return "OutOfRange";
         } // if
-        return (bytes / Math.pow(1024, sizesIndex)).toFixed(decimals) + " " + sizes[sizesIndex];
+
+		if (sizesIndex == 0) {
+            return bytes + " " + sizes[sizesIndex];
+        } // if
+        
+        var sizeDecimal = (bytes / Math.pow(1000, sizesIndex)).toFixed(decimals) + " " + sizesDecimal[sizesIndex]
+        return (bytes / Math.pow(1024, sizesIndex)).toFixed(decimals) + " " + sizes[sizesIndex] + " / " + sizeDecimal;
     } // bytesToUnits()
 
     return formatting;
