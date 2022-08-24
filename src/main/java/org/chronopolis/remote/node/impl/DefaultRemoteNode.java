@@ -74,12 +74,14 @@ public class DefaultRemoteNode implements RemoteNode {
             // Note: The JSON generated the class named "Collection"
             AceSummaryStatus aceSummaryStatus = this.getAceSummaryStatusFromRemoteAce();
 
-            aceBagSummary.setBags(String.valueOf(aceSummaryStatus.getCollections().size()));
+            List<org.chronopolis.remote.node.impl.jackson.ace.status.Collection> aceCollections = excludeDeletedCollections(aceSummaryStatus.getCollections());
+
+            aceBagSummary.setBags(String.valueOf(aceCollections.size()));
 
             Long totalFiles = 0L;
             Long totalBytes = 0L;
 
-            for (org.chronopolis.remote.node.impl.jackson.ace.status.Collection aceCollection : aceSummaryStatus.getCollections()) {
+            for (org.chronopolis.remote.node.impl.jackson.ace.status.Collection aceCollection : aceCollections) {
 
                 totalFiles += aceCollection.getTotalFiles();
                 totalBytes += aceCollection.getTotalSize();
@@ -94,6 +96,23 @@ public class DefaultRemoteNode implements RemoteNode {
         }
 
         return aceBagSummary;
+    }
+
+    /*
+     * Exclude deleted ace collections from the collection list
+     * @param aceCollections
+     * @return
+     */
+    private List<org.chronopolis.remote.node.impl.jackson.ace.status.Collection> excludeDeletedCollections(
+            List<org.chronopolis.remote.node.impl.jackson.ace.status.Collection> aceCollections) {
+
+        List<org.chronopolis.remote.node.impl.jackson.ace.status.Collection> results = new ArrayList<>();
+        for (org.chronopolis.remote.node.impl.jackson.ace.status.Collection aceCollection : aceCollections) {
+            if (aceCollection.getState() != "R") {
+                results.add(aceCollection);
+            }
+        }
+        return results;
     }
 
     public AceDepositorSummary getAceDepositorSummaryStatus() {
