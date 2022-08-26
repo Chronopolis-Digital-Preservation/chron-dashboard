@@ -108,7 +108,7 @@ public class DefaultRemoteNode implements RemoteNode {
 
         List<org.chronopolis.remote.node.impl.jackson.ace.status.Collection> results = new ArrayList<>();
         for (org.chronopolis.remote.node.impl.jackson.ace.status.Collection aceCollection : aceCollections) {
-            if (aceCollection.getState() != "R") {
+            if (aceCollection.getState() != null && !"R".equalsIgnoreCase(aceCollection.getState())) {
                 results.add(aceCollection);
             }
         }

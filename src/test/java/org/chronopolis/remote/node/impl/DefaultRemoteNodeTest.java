@@ -117,19 +117,21 @@ public class DefaultRemoteNodeTest {
 
         List<org.chronopolis.remote.node.impl.jackson.ace.status.Collection> collectionList = new ArrayList<>();
 
-        collectionList.add(this.createCollection(100L, 200L));
-        collectionList.add(this.createCollection(1000L, 2000L));
-        collectionList.add(this.createCollection(10000L, 20000L));
+        collectionList.add(this.createCollection(100L, 200L, "A"));
+        collectionList.add(this.createCollection(1000L, 2000L, "A"));
+        collectionList.add(this.createCollection(10000L, 20000L, "A"));
+        collectionList.add(this.createCollection(10L, 20L, "R"));
 
         return collectionList;
     }
 
-    private org.chronopolis.remote.node.impl.jackson.ace.status.Collection createCollection(long totalFiles, long totalSize) {
+    private org.chronopolis.remote.node.impl.jackson.ace.status.Collection createCollection(long totalFiles, long totalSize, String state) {
 
         org.chronopolis.remote.node.impl.jackson.ace.status.Collection collection = new org.chronopolis.remote.node.impl.jackson.ace.status.Collection();
 
         collection.setTotalFiles(totalFiles);
         collection.setTotalSize(totalSize);
+        collection.setState(state);
 
         return collection;
     }
