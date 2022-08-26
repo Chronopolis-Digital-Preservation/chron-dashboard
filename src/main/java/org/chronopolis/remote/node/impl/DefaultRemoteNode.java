@@ -125,6 +125,7 @@ public class DefaultRemoteNode implements RemoteNode {
             Map<String, DepositorSummary> depositor2summary = new TreeMap<>();
 
             AceSummaryStatus aceSummaryStatus = this.getAceSummaryStatusFromRemoteAce();
+            aceSummaryStatus.setCollections(excludeDeletedCollections(aceSummaryStatus.getCollections()));
 
             for (org.chronopolis.remote.node.impl.jackson.ace.status.Collection aceCollection : aceSummaryStatus.getCollections()) {
 

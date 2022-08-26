@@ -192,14 +192,15 @@ public class DefaultRemoteNodeTest {
 
         List<org.chronopolis.remote.node.impl.jackson.ace.status.Collection> collectionList = new ArrayList<>();
 
-        collectionList.add(this.createDepositorCollection("ACADIS", "BAG 1", 100L, 200L));
-        collectionList.add(this.createDepositorCollection("ACADIS", "BAG 2", 1000L, 2000L));
-        collectionList.add(this.createDepositorCollection("UCSD", "BAG 3", 10000L, 20000L));
+        collectionList.add(this.createDepositorCollection("ACADIS", "BAG 1", 100L, 200L, "A"));
+        collectionList.add(this.createDepositorCollection("ACADIS", "BAG 2", 1000L, 2000L, "A"));
+        collectionList.add(this.createDepositorCollection("UCSD", "BAG 3", 10000L, 20000L, "A"));
+        collectionList.add(this.createDepositorCollection("UCSD", "BAG 4", 10000L, 20000L, "R"));
 
         return collectionList;
     }
 
-    private org.chronopolis.remote.node.impl.jackson.ace.status.Collection createDepositorCollection(String depositor, String bagName, long totalFiles, long totalSize) {
+    private org.chronopolis.remote.node.impl.jackson.ace.status.Collection createDepositorCollection(String depositor, String bagName, long totalFiles, long totalSize, String state) {
 
         org.chronopolis.remote.node.impl.jackson.ace.status.Collection collection = new org.chronopolis.remote.node.impl.jackson.ace.status.Collection();
 
@@ -207,6 +208,7 @@ public class DefaultRemoteNodeTest {
         collection.setName(bagName);
         collection.setTotalFiles(totalFiles);
         collection.setTotalSize(totalSize);
+        collection.setState(state);
 
         return collection;
     }
