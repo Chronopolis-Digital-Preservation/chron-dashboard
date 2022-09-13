@@ -5,9 +5,11 @@
 	<div class="col">
 
 		<h3>Production</h3>
-
-		<table class="table table-sm table-striped">
-			<thead class="thead-dark">
+		<button class="btn-content-copy" onclick="copyToClipboard('production')" title="Copy to clipboard">
+			Copy
+		</button>
+		<table id="production" class="table table-bordered">
+			<thead>
 				<tr class="d-flex">
 					<th class="col-3" scope="col">Node</th>
 					<th class="col-3" scope="col">Disk Used</th>
@@ -47,9 +49,11 @@
 	<div class="col">
 
 		<h3>Test</h3>
-
-		<table class="table table-sm table-striped">
-			<thead class="thead-dark">
+		<button class="btn-content-copy" onclick="copyToClipboard('test')" title="Copy to clipboard">
+			Copy
+		</button>
+		<table id="test" class="table table-sm table-bordered">
+			<thead>
 				<tr class="d-flex">
 					<th class="col-3" scope="col">Node</th>
 					<th class="col-3" scope="col">Disk Used</th>

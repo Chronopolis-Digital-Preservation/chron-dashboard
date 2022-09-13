@@ -30,6 +30,24 @@ th, td {
 	font-weight: bold;
 }
 
+.btn-content-copy {
+  border: none;
+  background-color: #fff;
+  margin-top: -24px;
+  margin-right: 6px;
+  float: right;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-content-copy:hover {
+  color: #ccc;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
 /*
  * html elements (and their children) that are tagged with the ngCloak directive
  * are hidden until the template has completed compilation.
