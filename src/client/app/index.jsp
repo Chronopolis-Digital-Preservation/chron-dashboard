@@ -83,6 +83,7 @@
 	<script src="services/formatting.js"></script>
 	<script src="services/navigation.js"></script>
 	<script src="js/alertMessage.js"></script>
+	<script src="js/copyToClipboard.js"></script>
 
 	<!-- load the theme. otherwise, remove to use default bootsrap skin. -->
 	<script src="js/theme-ucsd.js"></script>
